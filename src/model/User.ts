@@ -1,4 +1,5 @@
 class User {
+  public static VK_FIELDS = 'photo,first_name,last_name';
   id: string;
   photo: string;
   firstName: string;
@@ -15,7 +16,7 @@ class User {
 }
 
 class Friend extends User {
-  public static VK_FIELDS = 'photo,first_name,second_name,sex,followers_count,bdate';
+  public static VK_FIELDS = 'photo,first_name,last_name,sex,followers_count,bdate';
   sex: number;
   followersCount: number;
   birthDate: string;

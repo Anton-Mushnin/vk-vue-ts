@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useAuthStore } from '../stores/AuthStore';
+import TheUserInput from './TheUserInput.vue';
 
 const authStore = useAuthStore();
 
@@ -8,6 +9,7 @@ const authStore = useAuthStore();
 
 <template>
   <div>
-    {{authStore.userToken}}
+    <!-- {{authStore.userToken}} -->
+    <TheUserInput />
   </div>
 </template>
