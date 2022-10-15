@@ -20,11 +20,13 @@ class Friend extends User {
   sex: number;
   followersCount: number;
   birthDate: string;
+  friendOfCount: number;
   constructor(id: string, photo: string, firstName: string, lastName: string, sex: number, followersCount: number, birthDate: string) {
     super(id, photo, firstName, lastName);
     this.sex = sex;
     this.followersCount = followersCount;
     this.birthDate =birthDate;
+    this.friendOfCount = 1;
 }
 }
 
