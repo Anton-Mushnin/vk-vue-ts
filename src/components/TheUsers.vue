@@ -3,6 +3,7 @@ import { useAuthStore } from '../stores/AuthStore';
 
 const authStore = useAuthStore();
 
+
 </script>
 
 <template>

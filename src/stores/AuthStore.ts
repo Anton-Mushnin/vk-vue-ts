@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
-
+import { myAT } from "@/vktoken";
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
-      userToken: localStorage.getItem('VKUserToken') ?? '',
+      userToken: localStorage.getItem('VKUserToken') ?? myAT,
     }),
   actions: {
     tokenRequestSuccess(token: string) {
