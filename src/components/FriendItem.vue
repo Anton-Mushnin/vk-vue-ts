@@ -20,7 +20,7 @@ const style = computed(() => {
     <div class="info w100">
       <div>{{props.friend.displayName}} </div>
       <div>{{props.friend.sexString}}</div>
-      <div>{{props.friend.age}}</div>
+      <div>{{props.friend.ageString}}</div>
     </div>
     <div class="info nowrap">
       <div v-if="props.friend.followersCount">В друзьях у: {{props.friend.followersCount}}</div>

@@ -33,36 +33,37 @@ class Friend extends User {
   birthDate: string;
   friendOfCount: number;
   friendPercent = 0;
+  age: number;
   constructor(vkUser: VKUser) {
     super(vkUser);
     this.sex = vkUser.sex;
     this.followersCount = vkUser.followers_count;
     this.birthDate = vkUser.bdate; //D'M'.YYYY
     this.friendOfCount = 1;
+    this.age = this.calcAge();
   }
 
-
-  get age(): string {
-    if (!this.birthDate || this.birthDate.length < 8) return '';
+  calcAge(): number {
+    if (!this.birthDate || this.birthDate.length < 8) return -1;
     const [date, month, year]: number[] = this.birthDate.split('.').map((s) => parseInt(s));
     const now = new Date();
     const nowYear = now.getFullYear();
     const nowMonth = now.getMonth();
     const nowDate = now.getDate();
-    let age: number;
     if (month < nowMonth || (month === nowMonth && date < nowDate)) {
-      age = nowYear - year
-    } else {
-      age = nowYear - year - 1;
-    }
-
-    const words = ['лет','год','года','года','года','лет','лет','лет','лет','лет'];
-    const lastDigit = parseInt(age.toString().slice(-1));
-    return `${age} ${words[lastDigit]}`
-
-
-
+      return nowYear - year
+    } return nowYear - year - 1;
   }
+
+  get ageString(): string {
+
+    if (this.age < 0) {return '';}
+    const words = ['лет','год','года','года','года','лет','лет','лет','лет','лет'];
+    const lastDigit = parseInt(this.age.toString().slice(-1));
+    return `${this.age} ${words[lastDigit]}`
+  }
+
+
 
 
 

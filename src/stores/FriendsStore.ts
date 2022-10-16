@@ -51,6 +51,13 @@ export const useFriendsStore = defineStore('friends', {
         }
       })
       this.friendsCountMap.clear();
+
+      this.friends = this.friends.sort((a, b) => {
+        if (a.age > b.age && b.age === -1) { return -1 }
+        if (b.age > a.age && a.age === -1) { return 1 }
+
+        return a.age - b.age
+      });
     }
   }
 })
