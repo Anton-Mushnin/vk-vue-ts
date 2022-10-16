@@ -3,6 +3,7 @@
 import { User, type VKUser } from '@/model/User';
 import { useAuthStore } from '@/stores/AuthStore';
 import { useUsersStore } from '@/stores/UsersStore';
+import SearchItem from './SearchItem.vue';
 
   const searchString = ref('');
   const searchList = ref<User[]>([]);
@@ -53,10 +54,7 @@ import { useUsersStore } from '@/stores/UsersStore';
   <div class="input-container">
     <input v-model="searchString" placeholder="type here..."/>
     <div class="search-list" ref="list">
-      <div @click="clickHandle(user)" v-for="user in searchList" :key="user.id">
-        <img :src="user.photo" />
-        {{`${user.displayName}`}}
-      </div>
+      <SearchItem @click="clickHandle(user)" v-for="user in searchList" :user="user" :key="user.id" />
     </div> 
   </div>
 </template>
@@ -64,9 +62,13 @@ import { useUsersStore } from '@/stores/UsersStore';
 <style scoped>
 .input-container {
   display: flex;
-  width: 400px;
+  /* width: 400px; */
+  width: 50%;
+  min-width: 300px;
   flex-direction: column;
   background-color: antiquewhite;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .search-list {
@@ -78,5 +80,24 @@ import { useUsersStore } from '@/stores/UsersStore';
   max-height: 500px;
   background-color: white;
   visibility: hidden;
+  /* display: flex;
+  flex-direction: column; */
+  /* padding: 5px; */
+}
+
+input {
+  border-radius: 5px;
+  outline: none;
+  box-shadow: none;
+  border: 0px;
+  background-color: rgb(148, 36, 148);
+  color: white;
+  padding: 5px;
+}
+
+input::placeholder {
+    font-weight: bold;
+    opacity: .5;
+    color: white;
 }
 </style>

@@ -1,24 +1,26 @@
 <script setup lang="ts">
-import type { User } from '@/model/User';
+import type { Friend } from '@/model/User';
 
 
 const props = defineProps<{
-  user: User;
+  friend: Friend;
 }>()
 
 </script>
 
 <template>
-  <div class="user">
-    <img :src="props.user.photo" />
-    {{props.user.displayName}}
+  <div class="friend">
+    <img :src="props.friend.photo" />
+    {{props.friend.displayName}}
   </div>
 </template>
 
+
 <style scoped>
-  .user {
+  .friend {
     padding: 5px;
     padding-left: 10px;
+    /* border-top: 1px solid gray; */
     border-bottom: 1px solid gray;
     display: flex;
     align-items: center;
@@ -28,5 +30,5 @@ const props = defineProps<{
   img {
     margin-right: 10px;
   }
-  
+
 </style>

@@ -17,8 +17,12 @@ const usersStore = useUsersStore();
 
 <style scoped>
 .users-list {
-  width: 700px;
-  background-color: aquamarine;
   margin-top: 20px;
+  border-right: 1px solid gray;
+  height: 100%;
+  padding: 10px;
+  overflow: auto;
+  height: 90vh;
+  /* background-color: antiquewhite; */
 }
 </style>

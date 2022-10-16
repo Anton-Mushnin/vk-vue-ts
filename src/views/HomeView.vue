@@ -5,14 +5,21 @@ import TheFriends from "../components/TheFriends.vue";
 
 <template>
   <main>
-    <TheUsers />
-    <TheFriends />
+    <div class="users-container">
+      <TheUsers />
+      <TheFriends />
+    </div>
   </main>
 </template>
 
 
 <style scoped>
-main {
-  display: flex;
+.users-container {
+  width: 100%;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+    height: 100%;
+  /* background-color: aliceblue; */
 }
 </style>

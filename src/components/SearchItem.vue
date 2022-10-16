@@ -15,10 +15,12 @@ const props = defineProps<{
   </div>
 </template>
 
+
 <style scoped>
   .user {
-    padding: 5px;
-    padding-left: 10px;
+    /* padding: 5px; */
+    /* padding-left: 10px; */
+    /* border-top: 1px solid gray; */
     border-bottom: 1px solid gray;
     display: flex;
     align-items: center;
@@ -28,5 +30,4 @@ const props = defineProps<{
   img {
     margin-right: 10px;
   }
-  
 </style>
