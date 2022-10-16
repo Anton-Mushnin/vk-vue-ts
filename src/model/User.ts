@@ -3,6 +3,8 @@ enum Genders {
   'Мужчина' = 2,
 }
 
+
+
 class User {
   public static VK_FIELDS = 'photo,first_name,last_name';
   id: string;
@@ -40,19 +42,26 @@ class Friend extends User {
   }
 
 
-  get age(): number | undefined {
-    // console.log(this.birthDate)
-
-    if (!this.birthDate || this.birthDate.length < 8) return undefined;
+  get age(): string {
+    if (!this.birthDate || this.birthDate.length < 8) return '';
     const [date, month, year]: number[] = this.birthDate.split('.').map((s) => parseInt(s));
     const now = new Date();
     const nowYear = now.getFullYear();
     const nowMonth = now.getMonth();
     const nowDate = now.getDate();
+    let age: number;
     if (month < nowMonth || (month === nowMonth && date < nowDate)) {
-      return nowYear - year
+      age = nowYear - year
+    } else {
+      age = nowYear - year - 1;
     }
-    return nowYear - year - 1;
+
+    const words = ['лет','год','года','года','года','лет','лет','лет','лет','лет'];
+    const lastDigit = parseInt(age.toString().slice(-1));
+    return `${age} ${words[lastDigit]}`
+
+
+
   }
 
 
