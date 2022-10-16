@@ -1,17 +1,28 @@
 <script setup lang="ts">
 import type { Friend } from '@/model/User';
+import { computed, ref } from 'vue';
 
+// const style = ref('background-color: white');
 
 const props = defineProps<{
   friend: Friend;
 }>()
 
+// onMounted(() => {
+
+// })
+
+const style = computed(() => {
+  if (props.friend.friendPercent > 0) { return `color: hsl(170, ${props.friend.friendPercent * 73}%, 55%)`}
+  return `color: black`;
+})
+
 </script>
 
 <template>
-  <div class="friend">
+  <div class="friend" :style="style">
     <img :src="props.friend.photo" />
-    {{props.friend.displayName}}
+    {{props.friend.displayName}} {{props.friend.friendPercent}} {{props.friend.friendOfCount}}
   </div>
 </template>
 
@@ -25,6 +36,7 @@ const props = defineProps<{
     display: flex;
     align-items: center;
     padding: 5px 0px 5px 0px;
+    /* background-color: hsl(170, 58%, 54%); */
   }
 
   img {

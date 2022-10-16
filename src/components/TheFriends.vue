@@ -15,7 +15,7 @@ const authStore = useAuthStore();
       class="show-button" 
       @click="friendsStore.getAll(usersStore.users, authStore.userToken)"
     >
-      {{friendsStore.loading ? '...loading' : 'show friends' }}
+      {{friendsStore.loading ? `...loading - ${friendsStore.friends.length} items done` : 'show friends' }}
     </button>
     <div class="friends-list">
       <FriendItem v-for="friend in friendsStore.friends" :friend="friend" :key="friend.id" />

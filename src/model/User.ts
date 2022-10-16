@@ -28,6 +28,7 @@ class Friend extends User {
   followersCount: number;
   birthDate: string;
   friendOfCount: number;
+  friendPercent = 0;
   constructor(vkUser: VKUser) {
     super(vkUser);
     this.sex = vkUser.sex;
@@ -46,7 +47,7 @@ class Friend extends User {
 }
 
 
-interface VKUser { id: string; photo: string; first_name: string; last_name: string; sex: number, followers_count: number, bdate: string}
+interface VKUser { deactivated: string, id: string; photo: string; first_name: string; last_name: string; sex: number, followers_count: number, bdate: string}
 
 
 export {User, Friend, type VKUser};
