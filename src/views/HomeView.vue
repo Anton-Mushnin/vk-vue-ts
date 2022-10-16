@@ -9,3 +9,10 @@ import TheFriends from "../components/TheFriends.vue";
     <TheFriends />
   </main>
 </template>
+
+
+<style scoped>
+main {
+  display: flex;
+}
+</style>

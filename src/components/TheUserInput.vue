@@ -37,7 +37,7 @@ import { useUsersStore } from '@/stores/UsersStore';
       const json = await res.json();
 
       if (json.error) { throw(json.error) }
-      searchList.value = json.response.items.map((u: VKUser) => new User(u.id, u.photo, u.first_name, u.last_name));
+      searchList.value = json.response.items.map((u: VKUser) => new User(u));
       (list.value as HTMLElement).style.visibility = searchList.value.length ? "visible" : "hidden";
     } catch(e: any) {
         console.log(e);
@@ -55,7 +55,7 @@ import { useUsersStore } from '@/stores/UsersStore';
     <div class="search-list" ref="list">
       <div @click="clickHandle(user)" v-for="user in searchList" :key="user.id">
         <img :src="user.photo" />
-        {{`${user.firstName} ${user.lastName}`}}
+        {{`${user.displayName}`}}
       </div>
     </div> 
   </div>

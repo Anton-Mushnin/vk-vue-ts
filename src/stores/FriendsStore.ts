@@ -1,11 +1,8 @@
 import { defineStore } from "pinia";
-import { Friend, type User } from '../model/User';
-import { useAuthStore } from "./AuthStore";
-import { useUsersStore } from "./UsersStore";
+import { Friend, type User, type VKUser } from '../model/User';
 
 const friends = new Array<Friend>;
-// const authStore = useAuthStore();
-// const usersStore = useUsersStore();
+
 export const useFriendsStore = defineStore('friends', {
   state: () => ({
     friends,
@@ -25,7 +22,11 @@ export const useFriendsStore = defineStore('friends', {
             if (friend) {
               friend.friendOfCount += 1; 
             } else {
-              this.friends.push(new Friend(item.id, item.photo, item.first_name, item.last_name, item.sex, item.followers_count, item.bdate));
+              if (!item.deactivated) {
+                this.friends.push(new Friend(item));
+              } else {
+                console.log(item);
+              }
             }
           }
         } catch(error) {
