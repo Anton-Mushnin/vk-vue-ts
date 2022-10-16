@@ -15,6 +15,7 @@ const style = computed(() => {
 </script>
 
 <template>
+  <router-link to="/">
   <div class="friend" :style="style">
     <img :src="props.friend.photo" />
     <div class="info w100">
@@ -28,6 +29,7 @@ const style = computed(() => {
       <div>У {{props.friend.friendOfCount}} из списка</div>
     </div>
   </div>
+  </router-link>
 </template>
 
 
@@ -39,8 +41,7 @@ const style = computed(() => {
     display: flex;
     align-items: center;
     padding: 5px 5px 5px 5px;
-    /* background-color: hsl(0, 100%, 79%); */
-    /* color: white; */
+    color: black;
   }
 
   .info {
