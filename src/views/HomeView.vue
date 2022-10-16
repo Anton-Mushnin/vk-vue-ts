@@ -16,10 +16,13 @@ import TheFriends from "../components/TheFriends.vue";
 <style scoped>
 .users-container {
   width: 100%;
+  max-width: 850px;
   padding: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr;
     height: 100%;
+    margin-left: auto;
+    margin-right: auto;
   /* background-color: aliceblue; */
 }
 </style>

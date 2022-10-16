@@ -18,7 +18,7 @@ const style = computed(() => {
   <div class="friend" :style="style">
     <img :src="props.friend.photo" />
     <div class="info w100">
-      <div>{{props.friend.displayName}} </div>
+      <div>{{props.friend.displayName}}</div>
       <div>{{props.friend.sexString}}</div>
       <div>{{props.friend.ageString}}</div>
     </div>

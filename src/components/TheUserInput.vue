@@ -38,8 +38,10 @@ import SearchItem from './SearchItem.vue';
       const json = await res.json();
 
       if (json.error) { throw(json.error) }
-      searchList.value = json.response.items.map((u: VKUser) => new User(u));
-      (list.value as HTMLElement).style.visibility = searchList.value.length ? "visible" : "hidden";
+      if (searchString.value) {
+        searchList.value = json.response.items.map((u: VKUser) => new User(u));
+        (list.value as HTMLElement).style.visibility = searchList.value.length ? "visible" : "hidden";
+      }
     } catch(e: any) {
         console.log(e);
         if (e.error_code === 5) {
@@ -80,6 +82,11 @@ import SearchItem from './SearchItem.vue';
   max-height: 500px;
   background-color: white;
   visibility: hidden;
+  border-left: 1px solid rgb(148, 36, 148);
+  border-right: 1px solid rgb(148, 36, 148);
+  border-bottom: 1px solid rgb(148, 36, 148);
+
+
   /* display: flex;
   flex-direction: column; */
   /* padding: 5px; */
@@ -93,6 +100,8 @@ input {
   background-color: rgb(148, 36, 148);
   color: white;
   padding: 5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
 }
 
 input::placeholder {

@@ -24,7 +24,8 @@ const props = defineProps<{
     border-bottom: 1px solid gray;
     display: flex;
     align-items: center;
-    padding: 5px 0px 5px 0px;
+    padding: 5px 5px 5px 5px;
+    cursor: pointer;
   }
 
   img {
