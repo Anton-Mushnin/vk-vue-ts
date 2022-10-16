@@ -22,7 +22,7 @@ const style = computed(() => {
 <template>
   <div class="friend" :style="style">
     <img :src="props.friend.photo" />
-    {{props.friend.displayName}} {{props.friend.friendPercent}} {{props.friend.friendOfCount}}
+    {{props.friend.displayName}} {{props.friend.age}} {{props.friend.friendOfCount}}
   </div>
 </template>
 

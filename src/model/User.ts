@@ -20,6 +20,8 @@ class User {
     return `${this.firstName} ${this.lastName}`;
   }
 
+
+
 }
 
 class Friend extends User {
@@ -33,9 +35,25 @@ class Friend extends User {
     super(vkUser);
     this.sex = vkUser.sex;
     this.followersCount = vkUser.followers_count;
-    this.birthDate = vkUser.bdate;
+    this.birthDate = vkUser.bdate; //D'M'.YYYY
     this.friendOfCount = 1;
-}
+  }
+
+
+  get age(): number | undefined {
+    // console.log(this.birthDate)
+
+    if (!this.birthDate || this.birthDate.length < 8) return undefined;
+    const [date, month, year]: number[] = this.birthDate.split('.').map((s) => parseInt(s));
+    const now = new Date();
+    const nowYear = now.getFullYear();
+    const nowMonth = now.getMonth();
+    const nowDate = now.getDate();
+    if (month < nowMonth || (month === nowMonth && date < nowDate)) {
+      return nowYear - year
+    }
+    return nowYear - year - 1;
+  }
 
 
 
