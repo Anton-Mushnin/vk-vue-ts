@@ -24,6 +24,7 @@ export const useFriendsStore = defineStore('friends', {
           if (!json.response) {throw(json) }
           const items: VKUser[] = json.response.items;
           for (const item of items) {
+            console.log(item);
             if (item.deactivated) { continue; }
               const count = this.friendsCountMap.get(item.id) ?? 0;
               this.friendsCountMap.set(item.id, count + 1);
@@ -40,9 +41,15 @@ export const useFriendsStore = defineStore('friends', {
         }
       }
       this.loading = false;
-      this.friends.forEach((f: Friend) => f.friendPercent = (friendsCountMap.get(f.id)! - 1) / maxFriends);
-      this.friends.forEach((f: Friend) => f.friendOfCount = friendsCountMap.get(f.id)!);
-
+      
+      this.friends.forEach((f: Friend) => {
+        f.friendOfCount = friendsCountMap.get(f.id) ?? 1;
+        if (f.friendOfCount === 1) { 
+          f.friendPercent = 0 
+        } else {
+          f.friendPercent = f.friendOfCount / maxFriends;
+        }
+      })
       this.friendsCountMap.clear();
     }
   }

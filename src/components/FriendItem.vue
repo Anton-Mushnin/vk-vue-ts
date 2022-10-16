@@ -2,19 +2,14 @@
 import type { Friend } from '@/model/User';
 import { computed, ref } from 'vue';
 
-// const style = ref('background-color: white');
-
 const props = defineProps<{
   friend: Friend;
 }>()
 
-// onMounted(() => {
-
-// })
 
 const style = computed(() => {
-  if (props.friend.friendPercent > 0) { return `color: hsl(170, ${props.friend.friendPercent * 73}%, 55%)`}
-  return `color: black`;
+  if (props.friend.friendOfCount > 1) { return `background-color: rgba(255, 0, 0, ${(props.friend.friendPercent) * 0.3})`}
+  return `background-color: white`;
 })
 
 </script>
@@ -22,7 +17,16 @@ const style = computed(() => {
 <template>
   <div class="friend" :style="style">
     <img :src="props.friend.photo" />
-    {{props.friend.displayName}} {{props.friend.age}} {{props.friend.friendOfCount}}
+    <div class="info w100">
+      <div>{{props.friend.displayName}} </div>
+      <div>{{props.friend.sexString}}</div>
+      <div>{{props.friend.age}}</div>
+    </div>
+    <div class="info nowrap">
+      <div v-if="props.friend.followersCount">В друзьях у: {{props.friend.followersCount}}</div>
+      <div v-else>В друзьях у: (скрыто)</div>
+      <div>У {{props.friend.friendOfCount}} из списка</div>
+    </div>
   </div>
 </template>
 
@@ -31,12 +35,32 @@ const style = computed(() => {
   .friend {
     padding: 5px;
     padding-left: 10px;
-    /* border-top: 1px solid gray; */
     border-bottom: 1px solid gray;
     display: flex;
     align-items: center;
-    padding: 5px 0px 5px 0px;
-    /* background-color: hsl(170, 58%, 54%); */
+    padding: 5px 5px 5px 5px;
+    /* background-color: hsl(0, 100%, 79%); */
+    /* color: white; */
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    font-size: 12px;
+    line-height: 15px;
+    cursor: pointer;
+    /* height: 50px; */
+    /* background-color: antiquewhite; */
+  }
+
+  .w100 {
+    width: 100%;
+  }
+
+  .nowrap {
+    white-space: nowrap;
+    text-align: end;
   }
 
   img {
