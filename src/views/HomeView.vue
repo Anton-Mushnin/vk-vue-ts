@@ -16,7 +16,7 @@ import TheFriends from "../components/TheFriends.vue";
 <style scoped>
 .users-container {
   width: 100%;
-  max-width: 850px;
+  max-width: 900px;
   padding: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr;

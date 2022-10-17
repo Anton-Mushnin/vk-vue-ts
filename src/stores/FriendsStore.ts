@@ -24,7 +24,6 @@ export const useFriendsStore = defineStore('friends', {
           if (!json.response) {throw(json) }
           const items: VKUser[] = json.response.items;
           for (const item of items) {
-            console.log(item);
             if (item.deactivated) { continue; }
               const count = this.friendsCountMap.get(item.id) ?? 0;
               this.friendsCountMap.set(item.id, count + 1);

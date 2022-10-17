@@ -15,7 +15,7 @@ const style = computed(() => {
 </script>
 
 <template>
-  <router-link to="/">
+  <router-link :to="`/users/${props.friend.id}`">
   <div class="friend" :style="style">
     <img :src="props.friend.photo" />
     <div class="info w100">
