@@ -1,3 +1,3 @@
-module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/vk-vue-ts/" : "/",
+export default  {
+  publicPath: '/vk-vue-ts/'
 };
