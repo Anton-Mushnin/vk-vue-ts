@@ -1,3 +1,4 @@
+import TheAuthVue from '@/components/TheAuth.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
@@ -13,6 +14,11 @@ const router = createRouter({
       path: '/users/:id/',
       name: 'user',
       component: () => import('../views/UserView.vue')
+    },
+    {
+      path: '/auth/',
+      name: 'auth',
+      component: TheAuthVue,
     }
   ]
 })

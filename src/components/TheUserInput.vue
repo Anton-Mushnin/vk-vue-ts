@@ -32,6 +32,7 @@ import SearchItem from './SearchItem.vue';
 
   async function fetchData() {
     try {
+      console.log(authStore.userToken);
       const res = await fetch(
         `https://api.vk.com/method/users.search?q=${searchString.value}&v=5.131&fields=${User.VK_FIELDS}&access_token=${authStore.userToken}`
       )
@@ -46,6 +47,7 @@ import SearchItem from './SearchItem.vue';
         console.log(e);
         if (e.error_code === 5) {
           console.log('token problem');
+          authStore.newTokenNeeded();
         }
     }
   }
