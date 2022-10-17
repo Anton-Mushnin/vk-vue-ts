@@ -22,7 +22,7 @@ const deleteUserClick = () => {
   <div class="user">
     <img :src="props.user.photo" />
     {{props.user.displayName}}
-    <div @click="deleteUserClick" class="delete-button">delete</div>
+    <div @click="deleteUserClick" class="delete-button">X</div>
   </div>
 </template>
 
@@ -39,6 +39,11 @@ const deleteUserClick = () => {
 
   img {
     margin-right: 10px;
+  }
+
+  .delete-button {
+    margin-left: auto;
+    padding: 10px;
   }
   
 </style>

@@ -25,10 +25,7 @@ export const useUsersStore = defineStore('users', {
       }
     },
     deleteUser (userId: string) {
-      console.log(this.users);
-      this.users = users.filter((u: User) => u.id !== userId);
-      console.log(this.users);
-
+      this.users = this.users.filter((u: User) => u.id !== userId);
     }
   }
 })

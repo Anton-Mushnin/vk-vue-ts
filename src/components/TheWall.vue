@@ -26,5 +26,5 @@ async function fetchNotes() {
 
 <template>
   Notes
-  {{authStore.userToken}}
+  <!-- {{authStore.userToken}} -->
 </template>
