@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import { myAT } from "@/vktoken";
-import router from "@/router";
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
