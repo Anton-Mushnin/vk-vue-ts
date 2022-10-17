@@ -1,10 +1,20 @@
 <script setup lang="ts">
 import type { User } from '@/model/User';
+import { useFriendsStore } from '@/stores/FriendsStore';
+import { useUsersStore } from '@/stores/UsersStore';
 
 
+const usersStore = useUsersStore();
+const friendsStore = useFriendsStore();
 const props = defineProps<{
   user: User;
 }>()
+
+const deleteUserClick = () => {
+  usersStore.deleteUser(props.user.id);
+  friendsStore.clear();
+
+}
 
 </script>
 
@@ -12,6 +22,7 @@ const props = defineProps<{
   <div class="user">
     <img :src="props.user.photo" />
     {{props.user.displayName}}
+    <div @click="deleteUserClick" class="delete-button">delete</div>
   </div>
 </template>
 

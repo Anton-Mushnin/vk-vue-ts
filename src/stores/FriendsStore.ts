@@ -13,6 +13,10 @@ export const useFriendsStore = defineStore('friends', {
     friendsCount: 1,
   }),
   actions: {
+    clear() {
+      this.friends = [];
+    },
+
     async getAll(forUsers: User[], token: string) {
       this.loading = true;
       this.friends = [];
