@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Friend } from '@/model/User';
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 
 const props = defineProps<{
   friend: Friend;

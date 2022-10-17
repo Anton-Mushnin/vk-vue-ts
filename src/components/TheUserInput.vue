@@ -54,7 +54,7 @@ import SearchItem from './SearchItem.vue';
 
 <template>
   <div class="input-container">
-    <input v-model="searchString" placeholder="type here..."/>
+    <input v-model="searchString" placeholder="name, last name"/>
     <div class="search-list" ref="list">
       <SearchItem @click="clickHandle(user)" v-for="user in searchList" :user="user" :key="user.id" />
     </div> 

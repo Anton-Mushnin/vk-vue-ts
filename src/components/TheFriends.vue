@@ -43,6 +43,7 @@ const authStore = useAuthStore();
   font-weight: 500;
   letter-spacing: 0.08em;
   border-radius: 5px;
+  margin-bottom: 30px;
 }
 
 .friends-list {
