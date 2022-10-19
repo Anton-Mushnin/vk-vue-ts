@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { User } from '../model/User';
+import { jsonp } from 'vue-jsonp';
 
 const users = new Array<User>;
 
@@ -15,15 +16,22 @@ export const useUsersStore = defineStore('users', {
       this.users.push(user);
     },
     async addUserWithId (id: string, token: string) {
+      const jsonp_funk = (res: any) => {
+        console.log(res);
+      }
       try {
-        this.error = '';
-        const res = await fetch(`https://api.vk.com/method/users.get?user_ids=${id}&v=5.131&fields=${User.VK_FIELDS}&access_token=${token}`);
-        const json = await res.json();
-        if (json.error) { throw(json.error)}
-        if (!json.response.length) { throw('Nothing found') }
-        this.addUser(new User(json.response[0]));
+        const url = `https://api.vk.com/method/users.get`;
+        const res = await jsonp(url, {
+          user_ids: id,
+          access_token: token,
+          fields: User.VK_FIELDS,
+          v: '5.131',
+        })
+        if (res.error) { throw(res.error)}
+        if (!res.response.length) { throw('Nothing found') }
+        this.addUser(new User(res.response[0]));
       } catch(error: any) {
-        console.log(e);
+        console.log(error);
         this.error = 'user not found';
         this.error_code = error.error_code;
         throw(error);

@@ -4,6 +4,7 @@ import { User, type VKUser } from '@/model/User';
 import { useAuthStore } from '@/stores/AuthStore';
 import { useUsersStore } from '@/stores/UsersStore';
 import SearchItem from './SearchItem.vue';
+import { jsonp } from 'vue-jsonp';
 
   const searchString = ref('');
   const searchList = ref<User[]>([]);
@@ -32,14 +33,16 @@ import SearchItem from './SearchItem.vue';
 
   async function fetchData() {
     try {
-      const res = await fetch(
-        `https://api.vk.com/method/users.search?q=${searchString.value}&v=5.131&fields=${User.VK_FIELDS}&access_token=${authStore.userToken}`
-      )
-      const json = await res.json();
-
-      if (json.error) { throw(json.error) }
+      const url = 'https://api.vk.com/method/users.search';
+      const res = await jsonp(url, {
+        q: searchString.value,
+        v: '5.131',
+        fields: User.VK_FIELDS,
+        access_token: authStore.userToken,
+      })
+      if (res.error) { throw(res.error) }
       if (searchString.value) {
-        searchList.value = json.response.items.map((u: VKUser) => new User(u));
+        searchList.value = res.response.items.map((u: VKUser) => new User(u));
         (list.value as HTMLElement).style.visibility = searchList.value.length ? "visible" : "hidden";
       }
     } catch(e: any) {
