@@ -16,10 +16,9 @@ export const useUsersStore = defineStore('users', {
       this.users.push(user);
     },
     async addUserWithId (id: string, token: string) {
-      const jsonp_funk = (res: any) => {
-        console.log(res);
-      }
+
       try {
+        this.error = '';
         const url = `https://api.vk.com/method/users.get`;
         const res = await jsonp(url, {
           user_ids: id,

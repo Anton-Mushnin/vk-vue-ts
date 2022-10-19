@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import router from '@/router';
 import { useAuthStore } from '@/stores/AuthStore';
 import { useUsersStore } from '@/stores/UsersStore';
 import { ref } from 'vue';
@@ -15,6 +14,7 @@ const showError = ref(true);
 const searchClick = () => {
   showError.value = true;
   usersStore.addUserWithId(userId.value, authStore.userToken)
+  .then(() => { userId.value = ''; })
   .catch((e) => {
     if (e.error_code === 5 || e.error_code === 1116) {
       authStore.newTokenNeeded();
@@ -28,7 +28,7 @@ const searchClick = () => {
 
 <template>
   <div class="id-search-container">
-    <input @input="showError = false" v-model="userId" placeholder="id or screen name" />
+    <input @input="showError = false" v-on:keyup.enter="searchClick" v-model="userId" placeholder="id or screen name" />
     <button class="search-button" @click="searchClick">add</button>
     <div class="error-message" v-if="usersStore.error && showError">
       {{usersStore.error}}
