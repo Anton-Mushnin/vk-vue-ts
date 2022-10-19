@@ -1,46 +1,12 @@
-# vk-vue-ts
+ТЗ:
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+1. Создать SPA, на базе Vue, позволяющее интерактивно добавлять/удалять пользователей Вконтакте, используя API, в список 
+по их имени фамилии (с автодополнением), числовому id или имени пользователя ![](https://i.ytimg.com/vi/2xnsnsw9KwI/maxresdefault.jpg).
+2. По кнопке "построить" отображается единый список всех друзей выбранных пользователей (в виде панелей)
+Пользователи должны быть отсортированы по фамилии/имени (с отображением пола, возраста, количества друзей и фотографии). 
+При этом цвет панели друга тем ярче, чем у большего числа выбранных пользователей он находится в друзьях.
+3. При клике по другу осуществляется переход на страницу, где отображаются те пользователи, у которых он находится в друзьях, 
+а также записи на его стене. 
+4. По нажатию на кнопку назад - отображается первоначальная страница со списком друзей, без потери состояния.
+5. Залить код приложения в github/gitlab.
+6. Залить рабочее приложение на [github-pages](https://pages.github.com/) или на любой другой хостинг - по своему усмотрению.
