@@ -1,22 +1,14 @@
 <script setup lang="ts">
 import type { Friend } from '@/model/User';
-import { computed } from 'vue';
 
 const props = defineProps<{
   friend: Friend;
 }>()
 
-
-const style = computed(() => {
-  if (props.friend.friendOfCount > 1) { return `background-color: rgba(255, 0, 0, ${(props.friend.friendPercent) * 0.3})`}
-  return `background-color: white`;
-})
-
 </script>
 
 <template>
-  <router-link :to="`/users/${props.friend.id}`">
-  <div class="friend" :style="style">
+  <div class="friend">
     <img :src="props.friend.photo" />
     <div class="info w100">
       <div>{{props.friend.displayName}}</div>
@@ -28,7 +20,6 @@ const style = computed(() => {
       <div v-else>В друзьях у: (скрыто)</div>
     </div>
   </div>
-  </router-link>
 </template>
 
 
@@ -48,7 +39,6 @@ const style = computed(() => {
     flex-direction: column;
     font-size: 12px;
     line-height: 15px;
-    cursor: pointer;
 
   }
 
