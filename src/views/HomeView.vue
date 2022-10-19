@@ -9,9 +9,9 @@ import TheLogin from '../components/TheLogin.vue';
 
 
 const authStore = useAuthStore();
-if(authStore.userToken) {
-  authStore.tokenRequestSuccess(authStore.userToken);
-}
+// if(authStore.userToken) {
+//   authStore.tokenRequestSuccess(authStore.userToken);
+// }
 // const authStore = useAuthStore();
 const parsedHash = new URLSearchParams(
   window.location.hash.substring(1)

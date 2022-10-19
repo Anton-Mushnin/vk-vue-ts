@@ -44,6 +44,7 @@ import { useAuthStore } from '@/stores/AuthStore';
   letter-spacing: 0.08em;
   border-radius: 5px;
   margin-bottom: 30px;
+  cursor: pointer;
 }
 
 

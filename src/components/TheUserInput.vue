@@ -44,7 +44,7 @@ import SearchItem from './SearchItem.vue';
       }
     } catch(e: any) {
         console.log(e);
-        if (e.error_code === 5) {
+        if (e.error_code === 5 || e.error_code === 1116) {
           authStore.newTokenNeeded();
         }
     }

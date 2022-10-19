@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import router from '@/router';
 import { useAuthStore } from '@/stores/AuthStore';
 import { useUsersStore } from '@/stores/UsersStore';
 import { ref } from 'vue';
@@ -13,7 +14,12 @@ const showError = ref(true);
 
 const searchClick = () => {
   showError.value = true;
-  usersStore.addUserWithId(userId.value, authStore.userToken);
+  usersStore.addUserWithId(userId.value, authStore.userToken)
+  .catch((e) => {
+    if (e.error_code === 5 || e.error_code === 1116) {
+      authStore.newTokenNeeded();
+    }
+  });
 }
 
 
@@ -65,8 +71,7 @@ input::placeholder {
   color: white;
   outline: none;
   box-shadow: none;
-  /* width: 50%; */
-  /* min-width: 300px; */
+  cursor: pointer;
   border: 0px;
   padding: 5px;
   font-weight: 500;

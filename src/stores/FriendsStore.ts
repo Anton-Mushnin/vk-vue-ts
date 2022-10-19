@@ -25,7 +25,7 @@ export const useFriendsStore = defineStore('friends', {
         try {
           const res = await fetch(`https://api.vk.com/method/friends.get?user_id=${user.id}&v=5.131&fields=${Friend.VK_FIELDS}&access_token=${token}`);
           const json = await res.json();
-          if (!json.response) {throw(json) }
+          if (json.error) { throw( json.error) }
           const items: VKUser[] = json.response.items;
           for (const item of items) {
             if (item.deactivated) { continue; }
@@ -39,8 +39,10 @@ export const useFriendsStore = defineStore('friends', {
                 }
               }
           }
-        } catch(error) {
+        } catch(error: any) {
           console.log(error);
+          this.error = error.error_msg;
+          throw(error);
         }
       }
       this.loading = false;

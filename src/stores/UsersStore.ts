@@ -2,10 +2,12 @@ import { defineStore } from "pinia";
 import { User } from '../model/User';
 
 const users = new Array<User>;
+
 export const useUsersStore = defineStore('users', {
   state: () => ({
     users,
     error: '',
+    error_code: 0,
   }),
   actions: {
     addUser (user: User) {
@@ -17,11 +19,14 @@ export const useUsersStore = defineStore('users', {
         this.error = '';
         const res = await fetch(`https://api.vk.com/method/users.get?user_ids=${id}&v=5.131&fields=${User.VK_FIELDS}&access_token=${token}`);
         const json = await res.json();
+        if (json.error) { throw(json.error)}
         if (!json.response.length) { throw('Nothing found') }
         this.addUser(new User(json.response[0]));
-      } catch(e) {
+      } catch(error: any) {
         console.log(e);
-        this.error = 'not found';
+        this.error = 'user not found';
+        this.error_code = error.error_code;
+        throw(error);
       }
     },
     deleteUser (userId: string) {
