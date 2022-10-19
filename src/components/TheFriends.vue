@@ -7,13 +7,23 @@ import FriendItem from './FriendItem.vue';
 const friendsStore = useFriendsStore();
 const usersStore = useUsersStore();
 const authStore = useAuthStore();
+const showClick = () => {
+  friendsStore.getAll(usersStore.users, authStore.userToken)
+  .catch((e) => {
+    if (e.error_code === 5 || e.error_code === 1116) {
+      authStore.newTokenNeeded();
+    }
+  });
+}
+
+
 </script>
 
 <template>
   <div class="container">
     <button 
       class="show-button" 
-      @click="friendsStore.getAll(usersStore.users, authStore.userToken)"
+      @click="showClick"
     >
       {{friendsStore.loading ? `...loading - ${friendsStore.friends.length} items done` : 'show friends' }}
     </button>
@@ -44,6 +54,7 @@ const authStore = useAuthStore();
   letter-spacing: 0.08em;
   border-radius: 5px;
   margin-bottom: 30px;
+  cursor: pointer;
 }
 
 .friends-list {

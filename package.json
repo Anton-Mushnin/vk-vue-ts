@@ -12,6 +12,7 @@
   "dependencies": {
     "pinia": "^2.0.21",
     "vue": "^3.2.38",
+    "vue-jsonp": "^2.0.0",
     "vue-router": "^4.1.5"
   },
   "devDependencies": {

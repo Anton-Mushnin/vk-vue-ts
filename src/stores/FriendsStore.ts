@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 import { Friend, type User, type VKUser } from '../model/User';
+import { jsonp } from 'vue-jsonp';
+
 
 const friends = new Array<Friend>;
 const friendsCountMap = new Map<string,number>();
@@ -23,10 +25,16 @@ export const useFriendsStore = defineStore('friends', {
       let maxFriends = 1;
       for (const user of forUsers) {
         try {
-          const res = await fetch(`https://api.vk.com/method/friends.get?user_id=${user.id}&v=5.131&fields=${Friend.VK_FIELDS}&access_token=${token}`);
-          const json = await res.json();
-          if (!json.response) {throw(json) }
-          const items: VKUser[] = json.response.items;
+          const url = 'https://api.vk.com/method/friends.get';
+          const res = await jsonp(url, {
+            v: '5.131',
+            access_token: token,
+            user_id: user.id,
+            fields: Friend.VK_FIELDS,
+          })
+
+          if (res.error) { throw( res.error) }
+          const items: VKUser[] = res.response.items;
           for (const item of items) {
             if (item.deactivated) { continue; }
               const count = this.friendsCountMap.get(item.id) ?? 0;
@@ -39,8 +47,10 @@ export const useFriendsStore = defineStore('friends', {
                 }
               }
           }
-        } catch(error) {
+        } catch(error: any) {
           console.log(error);
+          this.error = error.error_msg;
+          throw(error);
         }
       }
       this.loading = false;
