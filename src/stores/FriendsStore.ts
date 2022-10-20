@@ -65,12 +65,11 @@ export const useFriendsStore = defineStore('friends', {
       })
       this.friendsCountMap.clear();
 
-      this.friends = this.friends.sort((a, b) => {
-        if (a.age > b.age && b.age === -1) { return -1 }
-        if (b.age > a.age && a.age === -1) { return 1 }
+      Friend.prototype.toString = function friendToString() {
+        return `${this.lastName} ${this.firstName}`;
+      };
+      this.friends = this.friends.sort();
 
-        return a.age - b.age
-      });
     }
   }
 })
