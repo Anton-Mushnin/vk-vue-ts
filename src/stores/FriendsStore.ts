@@ -17,6 +17,7 @@ export const useFriendsStore = defineStore('friends', {
   actions: {
     clear() {
       this.friends = [];
+      this.friendsLoaded = 100;
     },
     async countFriends(token: string) {
       this.friendsLoaded = 0;
