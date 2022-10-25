@@ -15,10 +15,6 @@ const props = defineProps<{
       <div>{{props.friend.sexString}}</div>
       <div>{{props.friend.ageString}}</div>
     </div>
-    <div class="info nowrap">
-      <div v-if="props.friend.followersCount">В друзьях у: {{props.friend.followersCount}}</div>
-      <div v-else>В друзьях у: (скрыто)</div>
-    </div>
   </div>
 </template>
 

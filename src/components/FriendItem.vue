@@ -24,8 +24,9 @@ const style = computed(() => {
       <div>{{props.friend.ageString}}</div>
     </div>
     <div class="info nowrap">
-      <div v-if="props.friend.followersCount">В друзьях у: {{props.friend.followersCount}}</div>
-      <div v-else>В друзьях у: (скрыто)</div>
+      <div v-if="props.friend.followersCount > -1">Друзей: {{props.friend.followersCount}}</div>
+      <div v-if="props.friend.followersCount === -2">Считаем друзей...</div>
+      <div v-if="props.friend.followersCount === -1">Приватный профиль</div>
     </div>
   </div>
   </router-link>
