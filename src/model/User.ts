@@ -37,7 +37,7 @@ class Friend extends User {
   constructor(vkUser: VKUser) {
     super(vkUser);
     this.sex = vkUser.sex;
-    this.followersCount = vkUser.followers_count;
+    this.followersCount = -2;
     this.birthDate = vkUser.bdate; //D'M'.YYYY
     this.friendOfCount = 1;
     this.age = this.calcAge();

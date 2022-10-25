@@ -25,7 +25,9 @@ const showClick = () => {
       class="show-button" 
       @click="showClick"
     >
-      {{friendsStore.loading ? `...loading - ${friendsStore.friends.length} items done` : 'show friends' }}
+      <div v-if="friendsStore.loading">{{`...loading - ${friendsStore.friends.length} items done`}}</div>
+      <div v-else-if="friendsStore.friendsLoaded !== 100">{{`...counting friends - ${Math.round(friendsStore.friendsLoaded)}%`}}</div>
+      <div v-else>show friends</div>
     </button>
     <div class="friends-list">
       <FriendItem v-for="friend in friendsStore.friends" :friend="friend" :key="friend.id" />
