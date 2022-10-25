@@ -37,7 +37,9 @@ export const useFriendsStore = defineStore('friends', {
           i = i - 1;
           continue;
         }
-        this.friendsLoaded = ((i + 1) / this.friends.length) * 100;
+        if (this.friends.length > 0) {
+          this.friendsLoaded = ((i + 1) / this.friends.length) * 100;
+        }
         if (res.response) { 
           user.followersCount = res.response.count 
         } else {
